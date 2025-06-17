@@ -2,7 +2,7 @@
 
 namespace ControleDeBar.ConsoleApp.ModuloMesa;
 
-public class TelaMesa : TelaBase
+public class TelaMesa : TelaBase<Mesa>, ITela
 {
     public TelaMesa(RepositorioMesa repositorioMesa) : base("Mesa", repositorioMesa)
     {
@@ -22,11 +22,11 @@ public class TelaMesa : TelaBase
             "Id", "Número", "Capacidade", "Status"
         );
 
-        EntidadeBase[] mesas = repositorio.SelecionarRegistros();
+        Mesa[] mesas = repositorio.SelecionarRegistros();
 
         for (int i = 0; i < mesas.Length; i++)
         {
-            Mesa m = (Mesa)mesas[i];
+            Mesa m = mesas[i];
 
             if (m == null)
                 continue;
@@ -42,7 +42,7 @@ public class TelaMesa : TelaBase
         ApresentarMensagem("Digite ENTER para continuar...", ConsoleColor.DarkYellow);
     }
 
-    protected override EntidadeBase ObterDados()
+    protected override Mesa ObterDados()
     {
         bool conseguiuConverterNumero = false;
 

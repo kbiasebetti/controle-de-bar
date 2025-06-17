@@ -2,7 +2,7 @@
 
 namespace ControleDeBar.ConsoleApp.ModuloMesa;
 
-public class Mesa : EntidadeBase
+public class Mesa : EntidadeBase<Mesa>
 {
     public int Numero { get; set; }
     public int Capacidade { get; set; }
@@ -25,13 +25,10 @@ public class Mesa : EntidadeBase
         EstaOcupada = false;
     }
 
-
-    public override void AtualizarRegistro(EntidadeBase registroAtualizado)
+    public override void AtualizarRegistro(Mesa registroAtualizado)
     {
-        Mesa mesaAtualizada = (Mesa)registroAtualizado;
-
-        Numero = mesaAtualizada.Numero;
-        Capacidade = mesaAtualizada.Capacidade;
+        Numero = registroAtualizado.Numero;
+        Capacidade = registroAtualizado.Capacidade;
     }
 
     public override string Validar()
