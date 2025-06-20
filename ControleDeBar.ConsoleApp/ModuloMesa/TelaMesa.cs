@@ -18,7 +18,7 @@ public class TelaMesa : TelaBase<Mesa>, ITela
         Console.WriteLine();
 
         Console.WriteLine(
-            "{0, -10} | {1, -30} | {2, -30}",
+            "{0, -10} | {1, -20} | {2, -20} | {3, -30}",
             "Id", "Número", "Capacidade", "Status"
         );
 
@@ -34,7 +34,7 @@ public class TelaMesa : TelaBase<Mesa>, ITela
             string statusMesa = m.EstaOcupada ? "Ocupada" : "Disponível";
 
             Console.WriteLine(
-              "{0, -10} | {1, -30} | {2, -30}",
+              "{0, -10} | {1, -20} | {2, -20} | {3, -30}",
                 m.Id, m.Numero, m.Capacidade, statusMesa
             );
         }
