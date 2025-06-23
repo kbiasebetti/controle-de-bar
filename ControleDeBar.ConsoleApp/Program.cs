@@ -1,4 +1,5 @@
 ﻿using ControleDeBar.ConsoleApp.Compartilhado;
+using ControleDeBar.ConsoleApp.ModuloMesa;
 namespace ControleDeBar.ConsoleApp;
 
 internal class Program
@@ -11,7 +12,7 @@ internal class Program
         {
             telaPrincipal.ApresentarMenuPrincipal();
 
-            TelaBase telaEscolhida = telaPrincipal.ObterTela();
+            ITela telaEscolhida = telaPrincipal.ObterTela();
 
             if (telaEscolhida == null)
                 break;
