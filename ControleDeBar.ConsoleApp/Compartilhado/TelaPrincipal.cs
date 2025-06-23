@@ -1,5 +1,5 @@
-﻿using ControleDeBar.ConsoleApp.ModuloMesa;
-
+﻿using ControleDeBar.ConsoleApp.ModuloGarcom;
+using ControleDeBar.ConsoleApp.ModuloMesa;
 namespace ControleDeBar.ConsoleApp.Compartilhado;
 
 public class TelaPrincipal
@@ -7,12 +7,18 @@ public class TelaPrincipal
     private char opcaoEscolhida;
 
     private RepositorioMesa repositorioMesa;
+    private RepositorioGarcom repositorioGarcom;
+
     private TelaMesa telaMesa;
+    private TelaGarcom telaGarcom;
 
     public TelaPrincipal()
     {
         repositorioMesa = new RepositorioMesa();
+        repositorioGarcom = new RepositorioGarcom();
+
         telaMesa = new TelaMesa(repositorioMesa);
+        telaGarcom = new TelaGarcom(repositorioGarcom);
     }
 
     public void ApresentarMenuPrincipal()
@@ -22,7 +28,6 @@ public class TelaPrincipal
         Console.WriteLine("----------------------------------------");
         Console.WriteLine("|           Controle de Bar            |");
         Console.WriteLine("----------------------------------------");
-
         Console.WriteLine();
 
         Console.WriteLine("1 - Controle de Mesas");
@@ -30,7 +35,6 @@ public class TelaPrincipal
         Console.WriteLine("3 - Controle de Produtos");
         Console.WriteLine("4 - Controle de Contas");
         Console.WriteLine("S - Sair");
-
         Console.WriteLine();
 
         Console.Write("Escolha uma das opções: ");
@@ -43,7 +47,7 @@ public class TelaPrincipal
             return telaMesa;
 
         if (opcaoEscolhida == '2')
-            return null;
+            return telaGarcom;
 
         if (opcaoEscolhida == '3')
             return null;
