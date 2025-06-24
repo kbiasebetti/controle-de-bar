@@ -1,5 +1,5 @@
 ﻿using ControleDeBar.ConsoleApp.Compartilhado;
-namespace ControleDeBar.ConsoleApp.ModuloGarcom;
+namespace ControleDeBar.ConsoleApp.ModuloGarcons;
 public class TelaGarcom : TelaBase<Garcom>, ITela
 {
     public TelaGarcom(RepositorioGarcom repositorio) : base("Garçom", repositorio)

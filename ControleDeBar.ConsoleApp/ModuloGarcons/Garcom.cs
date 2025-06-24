@@ -1,6 +1,6 @@
 ﻿using ControleDeBar.ConsoleApp.Compartilhado;
 using System.Text.RegularExpressions;
-namespace ControleDeBar.ConsoleApp.ModuloGarcom;
+namespace ControleDeBar.ConsoleApp.ModuloGarcons;
 
 public class Garcom : EntidadeBase<Garcom>
 {
