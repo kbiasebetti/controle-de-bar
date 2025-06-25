@@ -1,6 +1,8 @@
-﻿using ControleDeBar.ConsoleApp.ModuloGarcons;
+﻿using ControleDeBar.ConsoleApp.ModuloContas;
+using ControleDeBar.ConsoleApp.ModuloGarcons;
 using ControleDeBar.ConsoleApp.ModuloMesa;
 using ControleDeBar.ConsoleApp.ModuloProdutos;
+
 namespace ControleDeBar.ConsoleApp.Compartilhado;
 
 public class TelaPrincipal
@@ -8,22 +10,43 @@ public class TelaPrincipal
     private char opcaoEscolhida;
 
     private RepositorioMesa repositorioMesa;
-    private RepositorioGarcom repositorioGarcom;
-    private RepositorioProduto repositorioProduto;
-
     private TelaMesa telaMesa;
+
+    private RepositorioGarcom repositorioGarcom;
     private TelaGarcom telaGarcom;
+
+    private RepositorioProduto repositorioProduto;
     private TelaProduto telaProduto;
+
+    private RepositorioConta repositorioConta;
+    private TelaConta telaConta;
 
     public TelaPrincipal()
     {
         repositorioMesa = new RepositorioMesa();
         repositorioGarcom = new RepositorioGarcom();
         repositorioProduto = new RepositorioProduto();
+        repositorioConta = new RepositorioConta();
 
         telaMesa = new TelaMesa(repositorioMesa);
         telaGarcom = new TelaGarcom(repositorioGarcom);
         telaProduto = new TelaProduto(repositorioProduto);
+
+        telaConta = new TelaConta(
+            repositorioConta,
+            repositorioProduto,
+            repositorioMesa,
+            repositorioGarcom
+        );
+
+        // Dados de teste
+        Mesa mesa = new Mesa(1, 3);
+        Garcom garcom = new Garcom("Gerson", "012.333.322-23");
+        Produto produto = new Produto("Cerveja Brahma 350ml", 6.50m);
+
+        repositorioMesa.CadastrarRegistro(mesa);
+        repositorioGarcom.CadastrarRegistro(garcom);
+        repositorioProduto.CadastrarRegistro(produto);
     }
 
     public void ApresentarMenuPrincipal()
@@ -33,6 +56,7 @@ public class TelaPrincipal
         Console.WriteLine("----------------------------------------");
         Console.WriteLine("|           Controle de Bar            |");
         Console.WriteLine("----------------------------------------");
+
         Console.WriteLine();
 
         Console.WriteLine("1 - Controle de Mesas");
@@ -40,6 +64,7 @@ public class TelaPrincipal
         Console.WriteLine("3 - Controle de Produtos");
         Console.WriteLine("4 - Controle de Contas");
         Console.WriteLine("S - Sair");
+
         Console.WriteLine();
 
         Console.Write("Escolha uma das opções: ");
@@ -58,7 +83,7 @@ public class TelaPrincipal
             return telaProduto;
 
         if (opcaoEscolhida == '4')
-            return null;
+            return telaConta;
 
         return null;
     }
