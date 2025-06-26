@@ -1,53 +1,57 @@
 ﻿using ControleDeBar.ConsoleApp.Compartilhado;
-using ControleDeBar.ConsoleApp.ModuloContas;
-namespace ControleDeBar.ConsoleApp;
+using ControleDeBar.ConsoleApp.ModuloConta;
 
-internal class Program
+namespace ControleDeBar.ConsoleApp
 {
-    static void Main(string[] args)
+    internal class Program
     {
-        TelaPrincipal telaPrincipal = new TelaPrincipal();
-
-        while (true)
+        static void Main(string[] args)
         {
-            telaPrincipal.ApresentarMenuPrincipal();
+            TelaPrincipal telaPrincipal = new TelaPrincipal();
 
-            ITela telaEscolhida = telaPrincipal.ObterTela();
-
-            if (telaEscolhida == null)
-                break;
-
-            char opcaoEscolhida = telaEscolhida.ApresentarMenu();
-
-            if (char.ToUpper(opcaoEscolhida) == 'S')
-                break;
-
-            if (telaEscolhida is TelaConta telaConta)
+            while (true)
             {
-                switch (opcaoEscolhida)
+                telaPrincipal.ApresentarMenuPrincipal();
+
+                ITela telaEscolhida = telaPrincipal.ObterTela();
+
+                if (telaEscolhida == null)
+                    break;
+
+                char opcaoEscolhida = telaEscolhida.ApresentarMenu();
+
+                if (char.ToUpper(opcaoEscolhida) == 'S')
+                    break;
+
+                if (telaEscolhida is TelaConta telaConta)
                 {
-                    case '1': telaConta.CadastrarRegistro(); break;
+                    switch (opcaoEscolhida)
+                    {
+                        case '1': telaConta.CadastrarRegistro(); break;
 
-                    case '2': telaConta.ApresentarMenuGestaoPedidos(); break;
+                        case '2': telaConta.EditarRegistro(); break;
 
-                    case '3': telaConta.VisualizarRegistros(true); break;
+                        case '3': telaConta.ApresentarMenuGestaoPedidos(); break;
+
+                        case '4': telaConta.VisualizarRegistros(true); break;
+                    }
                 }
-            }
-            else
-            {
-                switch (opcaoEscolhida)
+                else
                 {
-                    case '1': telaEscolhida.CadastrarRegistro(); break;
+                    switch (opcaoEscolhida)
+                    {
+                        case '1': telaEscolhida.CadastrarRegistro(); break;
 
-                    case '2': telaEscolhida.EditarRegistro(); break;
+                        case '2': telaEscolhida.EditarRegistro(); break;
 
-                    case '3': telaEscolhida.ExcluirRegistro(); break;
+                        case '3': telaEscolhida.ExcluirRegistro(); break;
 
-                    case '4': telaEscolhida.VisualizarRegistros(true); break;
+                        case '4': telaEscolhida.VisualizarRegistros(true); break;
+                    }
                 }
+
+
             }
-
-
         }
     }
 }

@@ -1,8 +1,11 @@
 ﻿using ControleDeBar.ConsoleApp.Compartilhado;
 using ControleDeBar.ConsoleApp.ModuloContas;
+using ControleDeBar.ConsoleApp.ModuloGarcom;
 using ControleDeBar.ConsoleApp.ModuloGarcons;
 using ControleDeBar.ConsoleApp.ModuloMesa;
+using ControleDeBar.ConsoleApp.ModuloProduto;
 using ControleDeBar.ConsoleApp.ModuloProdutos;
+
 namespace ControleDeBar.ConsoleApp.ModuloConta;
 
 public class TelaConta : ITela
@@ -30,8 +33,9 @@ public class TelaConta : ITela
         ExibirCabecalho();
 
         Console.WriteLine($"1 - Cadastro de Conta");
-        Console.WriteLine($"2 - Gerênciar Pedidos da Conta");
-        Console.WriteLine($"3 - Visualizar Contas");
+        Console.WriteLine($"2 - Fechamento de Conta");
+        Console.WriteLine($"3 - Gerênciar Pedidos da Conta");
+        Console.WriteLine($"4 - Visualizar Contas");
         Console.WriteLine($"S - Sair");
 
         Console.WriteLine();
@@ -117,6 +121,33 @@ public class TelaConta : ITela
 
     public void EditarRegistro()
     {
+        ExibirCabecalho();
+
+        Console.WriteLine("Fechamento de Conta");
+
+        Console.WriteLine();
+
+        VisualizarRegistros(false);
+
+        Console.Write("Digite o ID da conta que deseja fechar: ");
+        int id = Convert.ToInt32(Console.ReadLine());
+
+        Conta contaSelecionada = repositorioConta.SelecionarContaPorId(id);
+
+        Console.WriteLine();
+
+        Console.Write($"Deseja realmente fechar a conta do titular \"{contaSelecionada.Titular}\"? (s/N)");
+        char opcaoEscolhida = Console.ReadLine()[0];
+
+        if (char.ToUpper(opcaoEscolhida) == 'N')
+            return;
+
+        contaSelecionada.Fechar();
+
+        ApresentarMensagem(
+            $"Conta do titular \"{contaSelecionada.Titular}\" fechada com sucesso!",
+            ConsoleColor.Green
+        );
     }
 
     public void ExcluirRegistro()
