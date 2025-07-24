@@ -1,4 +1,6 @@
 ﻿using ControleDeBar.ConsoleApp.Compartilhado;
+using ControleDeBar.Dominio.ModuloGarcom;
+using ControleDeBar.Infraestrutura.Memoria.ModuloGarcom;
 
 namespace ControleDeBar.ConsoleApp.ModuloGarcom;
 public class TelaGarcom : TelaBase<Garcom>, ITela
