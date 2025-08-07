@@ -261,7 +261,7 @@ public class TelaConta : ITela
           "{0, -10} | {1, -20} | {2, -14} | {3, -20} | {4, -20} | {5, -20}",
           "Id", "Titular", "Mesa", "Garçom", "Abertura", "Status"
         );
-        
+
         decimal totalFaturamento = 0.0m;
 
         List<Conta> contasFaturamento = repositorioConta.SelecionarContasPorData(dataFaturamento);
@@ -277,7 +277,7 @@ public class TelaConta : ITela
                 c.Id, c.Titular, c.Mesa.Numero, c.Garcom.Nome, c.Abertura.ToShortDateString(), statusConta
             );
         }
-       
+
         Console.WriteLine();
 
         Console.WriteLine($"O Total faturado do dia foi: {totalFaturamento.ToString("C2")}");
@@ -409,7 +409,7 @@ public class TelaConta : ITela
             "Id", "Produto", "Quantidade", "Valor Parcial"
         );
 
-        Pedido[] pedidos = conta.Pedidos;
+        Pedido[] pedidos = conta.Pedidos.ToArray();
 
         for (int i = 0; i < pedidos.Length; i++)
         {
@@ -499,7 +499,7 @@ public class TelaConta : ITela
             int idPedido = Convert.ToInt32(Console.ReadLine());
 
             contaSelecionada.RemoverPedido(idPedido);
-          
+
             ApresentarMensagem($"Pedido removido com sucesso!", ConsoleColor.Green);
 
             Console.Write("Deseja remover mais pedidos (s/N)? ");
