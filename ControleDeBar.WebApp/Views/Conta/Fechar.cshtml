@@ -1,12 +1,11 @@
-﻿@{
+﻿@model FecharContaViewModel
+
+@{
     ViewBag.Titulo = "Fechamento de Conta";
 }
 
-@model FecharContaViewModel
-
-<hr />
-<div class="row justify-content-center my-5">
-    <div class="col-md-8">
+<div class="row justify-content-center">
+    <div class="col">
         <div class="card rounded-4 border-0">
             <div class="card-body p-md-5">
                 <form asp-action="FecharConfirmado" asp-route-id="@Model.Id">
@@ -31,29 +30,29 @@
 
                     @if (!Model.Pedidos.Any())
                     {
-                    <p class="fw-semibold mt-3">Ainda não há nenhum pedido relacionado à conta...</p>
+                        <p class="fw-semibold mt-3">Ainda não há nenhum pedido relacionado à conta...</p>
                     }
                     else
                     {
-                    <table class="table table-sm table-striped mt-3">
-                        <thead>
-                            <tr>
-                                <th>Produto</th>
-                                <th>Qtd.</th>
-                                <th>Valor</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (PedidoContaViewModel pedido in Model.Pedidos)
+                        <table class="table table-sm table-striped mt-3">
+                            <thead>
+                                <tr>
+                                    <th>Produto</th>
+                                    <th>Qtd.</th>
+                                    <th>Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (PedidoContaViewModel pedido in Model.Pedidos)
                                 {
-                            <tr>
-                                <td>@pedido.Produto</td>
-                                <td>@pedido.QuantidadeSolicitada</td>
-                                <td>@pedido.TotalParcial.ToString("C2")</td>
-                            </tr>
+                                    <tr>
+                                        <td>@pedido.Produto</td>
+                                        <td>@pedido.QuantidadeSolicitada</td>
+                                        <td>@pedido.TotalParcial.ToString("C2")</td>
+                                    </tr>
                                 }
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
                     }
 
                     <div class="form-group d-flex align-items-center justify-content-end gap-3 mt-5">
